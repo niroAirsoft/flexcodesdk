@@ -24,6 +24,6 @@ return [
         'deleted_at_column' => env('FLEXCODE_FINGERPRINT_DELETED_AT_COLUMN', 'deleted_at'),
     ),
 
-    'redirect_after_register' => env('FLEXCODE_REDIRECT_AFTER_REGISTER', url('/')),
-    'redirect_after_verify' => env('FLEXCODE_REDIRECT_AFTER_VERIFY', url('/')),
+	'redirect_after_register' => env('FLEXCODE_REDIRECT_AFTER_REGISTER, '/'),
+	'redirect_after_verify' => env('FLEXCODE_REDIRECT_AFTER_VERIFY', '/'),
 ];
