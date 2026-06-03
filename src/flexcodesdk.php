@@ -136,8 +136,14 @@ class flexcodesdk
         $userId = is_object($user) ? $user->id : $user;
         $fingerprint = $this->findFingerprint($userId);
         $fingerData = $fingerprint ? $fingerprint->{$this->fingerprintStorageConfig()['data_column']} : '';
-
-        return $userId . ";". $fingerData .";SecurityKey;". '15' .";". url('fingerprints/verify/' . $userId . '?' . $query_string) .";". url('fingerprints/ac');
+    
+        $callbackUrl = url('fingerprints/verify/' . $userId);
+        if ($query_string !== '') {
+            $callbackUrl .= '?' . $query_string;
+        }
+    
+        // Match working preprod: timeout 10 + trailing extraParams
+        return $userId . ';' . $fingerData . ';SecurityKey;10;' . $callbackUrl . ';' . url('fingerprints/ac') . ';extraParams';
     }
 
     public function verify($id, $serialized_data)
