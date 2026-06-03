@@ -126,7 +126,7 @@ class flexcodesdk
             'user_id' => $id,
             'fingerprint' => $fingerprint,
             'message' => 'Fingerprints successfully registered',
-            'redirect_url' => Config::get('flexcodesdk.redirect_after_register', url('/')),
+            'redirect_url' => $this->resolveRedirectUrl(Config::get('flexcodesdk.redirect_after_register', '/')),
         ];
     }
 
@@ -198,7 +198,7 @@ class flexcodesdk
                 'verified' => true,
                 'user_id' => $id,
                 'message' => 'Verication success',
-                'redirect_url' => Config::get('flexcodesdk.redirect_after_verify', url('/')),
+                'redirect_url' => $this->resolveRedirectUrl(Config::get('flexcodesdk.redirect_after_verify', '/')),
             );
             return $result;
         }
@@ -224,6 +224,15 @@ class flexcodesdk
             'verify_column' => 'verify',
             'deleted_at_column' => 'deleted_at',
         ]);
+    }
+
+    protected function resolveRedirectUrl($pathOrUrl)
+    {
+        $pathOrUrl = $pathOrUrl ?: '/';
+        if (preg_match('#^https?://#i', $pathOrUrl)) {
+            return $pathOrUrl;
+        }
+        return url($pathOrUrl);
     }
 
     protected function findFingerprint($userId)
