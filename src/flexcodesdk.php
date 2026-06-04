@@ -142,7 +142,6 @@ class flexcodesdk
             $callbackUrl .= '?' . $query_string;
         }
     
-        // Match working preprod: timeout 10 + trailing extraParams
         return $userId . ';' . $fingerData . ';SecurityKey;10;' . $callbackUrl . ';' . url('fingerprints/ac') . ';extraParams';
     }
 
