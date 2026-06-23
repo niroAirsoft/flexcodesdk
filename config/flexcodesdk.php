@@ -25,5 +25,5 @@ return [
     ),
 
 	'redirect_after_register' => env('FLEXCODE_REDIRECT_AFTER_REGISTER', '/'),
-	'redirect_after_verify' => env('FLEXCODE_REDIRECT_AFTER_VERIFY', '/'),
+	'redirect_after_verify' => env('FLEXCODE_REDIRECT_AFTER_VERIFY', ''),
 ];
