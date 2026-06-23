@@ -195,24 +195,23 @@ class flexcodesdk
         }
             
         $salt = md5($sn.$fingerData.$device['vc'].$time.$user_id.$device['vkey']);
-        
         if(strtoupper($vStamp) == strtoupper($salt)){
             $this->markFingerprintVerified($id);
-
+        
             $result = array(
                 'verified' => true,
                 'user_id' => $id,
                 'message' => 'Verication success',
-                'redirect_url' => $this->resolveRedirectUrl(Config::get('flexcodesdk.redirect_after_verify', '/')),
             );
+        
+            // Only attach a redirect URL when one is explicitly configured.
+            $redirectAfterVerify = Config::get('flexcodesdk.redirect_after_verify');
+            if (!empty($redirectAfterVerify)) {
+                $result['redirect_url'] = $this->resolveRedirectUrl($redirectAfterVerify);
+            }
+        
             return $result;
         }
-        $result = array(
-            'verified' => false,
-            'user_id' => $id,
-            'message' => 'Fingerprint mismatch',
-        );
-        return $result;
     }
 
     public function getRegistrationLink($id)
