@@ -56,6 +56,10 @@ class flexcodeSDKController extends Controller
             }
         }
 
-        return response($result['redirect_url'] ?? url('/'));
+        if (!empty($result['redirect_url'])) {
+            return response($result['redirect_url']);
+        }
+        
+        return response('', 200);
     }
 }
