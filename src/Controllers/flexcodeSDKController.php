@@ -6,7 +6,7 @@ use Illuminate\Routing\Controller;
 use Illuminate\Http\Request;
 
 use flexcodesdk;
-use Event;
+use Illuminate\Support\Facades\Event;
 
 class flexcodeSDKController extends Controller
 {
