@@ -2,7 +2,7 @@
 
 namespace idekite\flexcodesdk;
 
-use Config;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
 
 class flexcodesdk
